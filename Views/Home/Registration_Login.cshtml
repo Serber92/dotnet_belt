@@ -1,0 +1,47 @@
+﻿@model Wrapper
+
+<h2>Registration</h2>
+<form asp-asp-controller="Home" asp-action="RegistrationProcess">
+    <div class="form-group">
+        <span class="text-danger" asp-validation-for="User.Name"></span>
+        <br>
+        <label asp-for="User.Name">Name</label>
+        <input class="form-control" asp-for="User.Name">
+
+        <span class="text-danger" asp-validation-for="User.Email"></span>
+        <br>
+        <label asp-for="User.Email">Email</label>
+        <input class="form-control" type="email" asp-for="User.Email">
+
+        <span class="text-danger" asp-validation-for="User.Password"></span>
+        <br>
+        <label asp-for="User.Password">Password</label>
+        <input class="form-control" type="password" asp-for="User.Password">
+        <small id="emailHelp" class="form-text text-muted">* Password must be at least 8 characters.</small>
+
+        <span class="text-danger" asp-validation-for="User.ConfirmPassword"></span>
+        <br>
+        <label asp-for="User.ConfirmPassword">Confirm Password</label>
+        <input class="form-control" type="password" asp-for="User.ConfirmPassword">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+<h2>Login</h2>
+<form asp-asp-controller="Home" asp-action="LoginProcess">
+    <div class="form-group">
+        <span class="text-danger" asp-validation-for="Login.Email"></span>
+        <br>
+        <label asp-for="Login.Email">Email</label>
+        <input class="form-control" type="email" asp-for="Login.Email">
+
+        <span class="text-danger" asp-validation-for="Login.Password"></span>
+        <br>
+        <label asp-for="Login.Password">Password</label>
+        <input class="form-control" type="password" asp-for="Login.Password">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+
+

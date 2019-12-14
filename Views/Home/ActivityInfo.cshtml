@@ -1,0 +1,38 @@
+@model Wrapper
+
+<h2>@Model.Activity.Title</h2>
+
+<h3>Event Coordinator: @Model.Activity.Creator.Name</h3>
+
+<h2>Description: </h2>
+<br>
+<p>@Model.Activity.Description</p>
+
+<h4>Participants: </h4>
+
+@{
+    foreach (var sub in @Model.Activity.Participants)
+    {
+      <p>@sub.User.Name</p>
+    }
+}
+
+@{
+  if(@Model.User.UserId == @Model.Activity.Creator.UserId)
+  {
+    <a class="btn btn-primary" href="Delete/@Model.Activity.ActivityId" role="button">Delete</a>
+  }
+  else
+  {
+    if(@Model.Activity.Participants.Intersect(@Model.User.ActivitiesJoined).Any())
+    {
+      <a class="btn btn-primary" href="LeaveActivity/@Model.Activity.ActivityId" role="button">Leave</a>
+    }
+    else
+    {
+      <a class="btn btn-primary" href="JoinActivity/@Model.Activity.ActivityId" role="button">Join</a>
+    }
+  }
+}
+
+

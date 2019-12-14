@@ -1,0 +1,59 @@
+﻿@{
+    ViewData["Title"] = "Dojo Activity Center";
+}
+<h1>@ViewData["Title"]</h1>
+
+@model Wrapper
+<h2>Welcome, @Model.User.Name</h2>
+
+@{
+    foreach(_Activity activity in @Model.Activities)
+    {
+        if (@activity.DateConverted > DateTime.Now){
+            <table class="table">
+            <thead>
+                <tr>
+                <th scope="col">Activity</th>
+                <th scope="col">Date and Time</th>
+                <th scope="col">Duration</th>
+                <th scope="col">Event Coordinator</th>
+                <th scope="col">Participants</th>
+                <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                <td><a href="ActivityInfo/@activity.ActivityId">@activity.Title</a></td>
+                <td>@activity.Date at @activity.Time</td>
+                <td>@activity.Duration @activity.DurationType</td>
+                <td>@activity.Creator.Name</td>
+                <td>@activity.Participants.Count</td>
+                <td>
+                    @{
+                        if(@activity.Creator.UserId == @Model.User.UserId)
+                        {
+                            <a href="ActivityInfo/Delete/@activity.ActivityId">Delete</a>
+                        }
+                        else
+                        {
+                            if(@activity.Participants.Intersect(@Model.User.ActivitiesJoined).Any())
+                            {
+                                <a href="ActivityInfo/LeaveActivity/@activity.ActivityId">Leave</a>
+                            }
+                            else
+                            {
+                                <a href="ActivityInfo/JoinActivity/@activity.ActivityId">Join</a>
+                            }
+                        }
+                    }
+                </td>
+                </tr>
+            </tbody>
+            </table>
+        }
+    }
+}
+
+
+
+<a class="btn btn-primary" href="AddNewActivity" role="button">Add new Activity</a>

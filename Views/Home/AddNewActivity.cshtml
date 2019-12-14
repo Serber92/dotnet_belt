@@ -1,0 +1,43 @@
+@{
+    ViewData["Title"] = "Create an Activity";
+}
+<h1>@ViewData["Title"]</h1>
+
+@model Wrapper
+
+<form asp-asp-controller="Home" asp-action="AddNewActivityProcess">
+    <div class="form-group">
+        <span class="text-danger" asp-validation-for="Activity.Title"></span>
+        <br>
+        <label asp-for="Activity.Title">Title</label>
+        <input class="form-control" asp-for="Activity.Title">
+
+        <span class="text-danger" asp-validation-for="Activity.Date"></span>
+        <br>
+        <label asp-for="Activity.Date">Date</label>
+        <input class="form-control" asp-for="Activity.Date">
+
+        <span class="text-danger" asp-validation-for="Activity.Time"></span>
+        <br>
+        <label asp-for="Activity.Time">Time</label>
+        <input class="form-control" asp-for="Activity.Time">
+
+        <span class="text-danger" asp-validation-for="Activity.Duration"></span>
+        <br>
+        <label asp-for="Activity.Duration">Duration</label>
+        <input class="form-control"asp-for="Activity.Duration">
+        <select class="form-control" asp-for="Activity.DurationType">
+          <option value="Hours">Hours</option>
+          <option value="Minutes">Minutes</option>
+          <option value="Days">Days</option>
+        </select>
+
+        <span class="text-danger" asp-validation-for="Activity.Description"></span>
+        <br>
+        <label asp-for="Activity.Description">Description</label>
+        <input class="form-control" type="date" asp-for="Activity.Description">
+
+        <input type="hidden" asp-for="Activity.UserId" value="@Model.User.UserId" >
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
